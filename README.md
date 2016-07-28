@@ -1,6 +1,14 @@
 # duplexer2-unwrappable
 
+[![Build Status][ci-master]][travis-ci]
+[![Coverage Status][coverage-master]][coveralls]
+[![Dependency Status][dependency]][david]
+[![devDependency Status][dev-dependency]][david]
+[![Downloads][downloads]][npm]
+
 Like [duplexer2](https://github.com/deoxxa/duplexer2) but unwrappable
+
+[![NPM][npm-stats]][npm]
 
 ```javascript
 var stream = require("stream");
@@ -117,3 +125,17 @@ Instance Methods
 * GitHub ([deoxxa](http://github.com/deoxxa))
 * Twitter ([@deoxxa](http://twitter.com/deoxxa))
 * Email ([deoxxa@fknsrs.biz](mailto:deoxxa@fknsrs.biz))
+
+
+  [ci-master]: https://img.shields.io/travis/nextorigin/duplexer2-unwrappable/master.svg?style=flat-square
+  [travis-ci]: https://travis-ci.org/nextorigin/duplexer2-unwrappable
+  [coverage-master]: https://img.shields.io/coveralls/nextorigin/duplexer2-unwrappable/master.svg?style=flat-square
+  [coveralls]: https://coveralls.io/r/nextorigin/duplexer2-unwrappable
+  [dependency]: https://img.shields.io/david/nextorigin/duplexer2-unwrappable.svg?style=flat-square
+  [david]: https://david-dm.org/nextorigin/duplexer2-unwrappable
+  [dev-dependency]: https://img.shields.io/david/dev/nextorigin/duplexer2-unwrappable.svg?style=flat-square
+  [david-dev]: https://david-dm.org/nextorigin/duplexer2-unwrappable#info=devDependencies
+  [downloads]: https://img.shields.io/npm/dm/duplexer2-unwrappable.svg?style=flat-square
+  [npm]: https://www.npmjs.org/package/duplexer2-unwrappable
+  [npm-stats]: https://nodei.co/npm/duplexer2-unwrappable.png?downloads=true&downloadRank=true&stars=true
+
