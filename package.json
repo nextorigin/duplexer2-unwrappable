@@ -1,9 +1,11 @@
 {
-  "name": "duplexer2",
+  "name": "duplexer2-unwrappable",
   "version": "0.1.4",
   "description": "Like duplexer2 but unwrappable",
   "files": [
-    "index.js"
+    "index.js",
+    "index.js.map",
+    "src/"
   ],
   "scripts": {
     "build": "coffee --bare --map -o ./ -c src/*",
@@ -24,6 +26,7 @@
     "readable-stream": "^2.0.2"
   },
   "devDependencies": {
+    "coffee-script": "^1.10.0",
     "mocha": "^2.2.5"
   }
 }
