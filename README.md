@@ -1,11 +1,11 @@
-# duplexer2 [![Build Status](https://travis-ci.org/deoxxa/duplexer2.svg?branch=master)](https://travis-ci.org/deoxxa/duplexer2) [![Coverage Status](https://coveralls.io/repos/deoxxa/duplexer2/badge.svg?branch=master&service=github)](https://coveralls.io/github/deoxxa/duplexer2?branch=master)
+# duplexer2-unwrappable
 
-Like [duplexer](https://github.com/Raynos/duplexer) but using Streams3
+Like [duplexer2](https://github.com/deoxxa/duplexer2) but unwrappable
 
 ```javascript
 var stream = require("stream");
 
-var duplexer2 = require("duplexer2");
+var duplexer2 = require("duplexer2-unwrappable");
 
 var writable = new stream.Writable({objectMode: true}),
     readable = new stream.Readable({objectMode: true});
@@ -73,7 +73,7 @@ works the same.
 [Available via `npm`](https://docs.npmjs.com/cli/install):
 
 ```
-$ npm i duplexer2
+$ npm i duplexer2-unwrappable
 ```
 
 ## API
@@ -81,14 +81,14 @@ $ npm i duplexer2
 ### duplexer2
 
 Creates a new `DuplexWrapper` object, which is the actual class that implements
-most of the fun stuff. All that fun stuff is hidden. DON'T LOOK.
+most of the fun stuff. **All that fun stuff is ~~hidden. DON'T LOOK.~~ now exposed so you can unwrap streams and avoid having closures bind streams together forever.**
 
 ```javascript
-duplexer2([options], writable, readable)
+new duplexer2([options], writable, readable)
 ```
 
 ```javascript
-const duplex = duplexer2(new stream.Writable(), new stream.Readable());
+const duplex = new duplexer2(new stream.Writable(), new stream.Readable());
 ```
 
 Arguments
@@ -102,6 +102,10 @@ Options
 
 * __bubbleErrors__ - a boolean value that specifies whether to bubble errors
   from the underlying readable/writable streams. Default is `true`.
+
+Instance Methods
+
+* __unbind__ - unbinds the duplexer2 instance from the writable and readable stream methods, allowing the underlying streams to be re-used.
 
 
 ## License
