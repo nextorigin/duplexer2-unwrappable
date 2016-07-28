@@ -216,4 +216,25 @@ describe("duplexer2", function() {
       assert.equal(readable._readableState.flowing, null);
     });
   });
+
+  it("should unbind events from writable and readable streams when unbind is called", function(done) {
+    var duplex = new duplexer2(writable, readable);
+
+    var timeout = setTimeout(done, 25);
+
+    duplex.on("error", function(err) {
+      clearTimeout(timeout);
+
+      return done(Error("shouldn't bubble error"));
+    });
+
+    // prevent uncaught error exception
+    writable.on("error", function() {});
+    readable.on("error", function() {});
+    duplex.unbind()
+
+    writable.emit("error", Error("testing"));
+    readable.emit("error", Error("testing"));
+  });
+
 });

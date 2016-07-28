@@ -1,7 +1,7 @@
 {
   "name": "duplexer2",
   "version": "0.1.4",
-  "description": "Like duplexer but using streams3",
+  "description": "Like duplexer2 but unwrappable",
   "files": [
     "index.js"
   ],

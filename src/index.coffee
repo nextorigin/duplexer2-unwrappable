@@ -33,6 +33,16 @@ class DuplexWrapper extends stream.Duplex
     @_writable.on "error",           @bubbleError
     @_readable.on "error",           @bubbleError
 
+  unbind: =>
+    @_writable.removeListener "finish",      @_end
+    @removeListener           "finish",      @_endWritable
+
+    @_readable.removeListener "readable",    @readIfWaiting
+    @_readable.removeListener "end",         @pushNull
+
+    @_writable.removeListener "error",       @bubbleError
+    @_readable.removeListener "error",       @bubbleError
+
   _end: => @end()
   _endWritable: => @_writable.end()
 
