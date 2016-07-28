@@ -21,7 +21,7 @@ describe("duplexer2", function() {
   });
 
   it("should interact with the writable stream properly for writing", function(done) {
-    var duplex = duplexer2(writable, readable);
+    var duplex = new duplexer2(writable, readable);
 
     writable._write = function _write(input, encoding, _done) {
       assert.strictEqual(input.toString(), "well hello there");
@@ -33,7 +33,7 @@ describe("duplexer2", function() {
   });
 
   it("should interact with the readable stream properly for reading", function(done) {
-    var duplex = duplexer2(writable, readable);
+    var duplex = new duplexer2(writable, readable);
 
     duplex.on("data", function(e) {
       assert.strictEqual(e.toString(), "well hello there");
@@ -45,7 +45,7 @@ describe("duplexer2", function() {
   });
 
   it("should end the writable stream, causing it to finish", function(done) {
-    var duplex = duplexer2(writable, readable);
+    var duplex = new duplexer2(writable, readable);
 
     writable.once("finish", done);
 
@@ -53,7 +53,7 @@ describe("duplexer2", function() {
   });
 
   it("should finish when the writable stream finishes", function(done) {
-    var duplex = duplexer2(writable, readable);
+    var duplex = new duplexer2(writable, readable);
 
     duplex.once("finish", done);
 
@@ -61,7 +61,7 @@ describe("duplexer2", function() {
   });
 
   it("should end when the readable stream ends", function(done) {
-    var duplex = duplexer2(writable, readable);
+    var duplex = new duplexer2(writable, readable);
 
     // required to let "end" fire without reading
     duplex.resume();
@@ -71,7 +71,7 @@ describe("duplexer2", function() {
   });
 
   it("should bubble errors from the writable stream when no behaviour is specified", function(done) {
-    var duplex = duplexer2(writable, readable);
+    var duplex = new duplexer2(writable, readable);
 
     var originalErr = Error("testing");
 
@@ -85,7 +85,7 @@ describe("duplexer2", function() {
   });
 
   it("should bubble errors from the readable stream when no behaviour is specified", function(done) {
-    var duplex = duplexer2(writable, readable);
+    var duplex = new duplexer2(writable, readable);
 
     var originalErr = Error("testing");
 
@@ -99,7 +99,7 @@ describe("duplexer2", function() {
   });
 
   it("should bubble errors from the writable stream when bubbleErrors is true", function(done) {
-    var duplex = duplexer2({bubbleErrors: true}, writable, readable);
+    var duplex = new duplexer2({bubbleErrors: true}, writable, readable);
 
     var originalErr = Error("testing");
 
@@ -113,7 +113,7 @@ describe("duplexer2", function() {
   });
 
   it("should bubble errors from the readable stream when bubbleErrors is true", function(done) {
-    var duplex = duplexer2({bubbleErrors: true}, writable, readable);
+    var duplex = new duplexer2({bubbleErrors: true}, writable, readable);
 
     var originalErr = Error("testing");
 
@@ -127,7 +127,7 @@ describe("duplexer2", function() {
   });
 
   it("should not bubble errors from the writable stream when bubbleErrors is false", function(done) {
-    var duplex = duplexer2({bubbleErrors: false}, writable, readable);
+    var duplex = new duplexer2({bubbleErrors: false}, writable, readable);
 
     var timeout = setTimeout(done, 25);
 
@@ -144,7 +144,7 @@ describe("duplexer2", function() {
   });
 
   it("should not bubble errors from the readable stream when bubbleErrors is false", function(done) {
-    var duplex = duplexer2({bubbleErrors: false}, writable, readable);
+    var duplex = new duplexer2({bubbleErrors: false}, writable, readable);
 
     var timeout = setTimeout(done, 25);
 
@@ -164,7 +164,7 @@ describe("duplexer2", function() {
     var readable1 = new stream;
     readable1.readable = true;
     readable1._read = function() {}
-    var duplex = duplexer2(writable, readable1);
+    var duplex = new duplexer2(writable, readable1);
 
     duplex.on("readable", function(e) {
       e = duplex.read()
@@ -179,17 +179,13 @@ describe("duplexer2", function() {
     readable1.push("well hello there");
   });
 
-  it("should export the DuplexWrapper constructor", function() {
-    assert.equal(typeof duplexer2.DuplexWrapper, "function");
-  });
-
   it("should not force flowing-mode", function(done) {
     var writable = new stream.PassThrough();
     var readable = new stream.PassThrough();
 
     assert.equal(readable._readableState.flowing, null);
 
-    var duplexStream = duplexer2(writable, readable);
+    var duplexStream = new duplexer2(writable, readable);
     duplexStream.end("aaa");
 
     assert.equal(readable._readableState.flowing, null);

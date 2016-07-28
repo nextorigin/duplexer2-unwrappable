@@ -6,6 +6,7 @@
     "index.js"
   ],
   "scripts": {
+    "build": "coffee --bare --map -o ./ -c src/*",
     "test": "mocha -R tap"
   },
   "repository": "deoxxa/duplexer2",
