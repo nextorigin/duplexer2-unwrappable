@@ -11,7 +11,7 @@
     "build": "coffee --bare --map -o ./ -c src/*",
     "test": "mocha -R tap"
   },
-  "repository": "deoxxa/duplexer2",
+  "repository": "nextorigin/duplexer2-unwrappable",
   "keywords": [
     "duplex",
     "duplexer",
@@ -21,6 +21,9 @@
     "combine"
   ],
   "author": "Conrad Pankoff <deoxxa@fknsrs.biz> (http://www.fknsrs.biz/)",
+  "contributors": [
+    "Charles Phillips <charles@doublerebel.com>"
+  ],
   "license": "BSD-3-Clause",
   "dependencies": {
     "readable-stream": "^2.0.2"
